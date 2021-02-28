@@ -1,11 +1,11 @@
-# spawn-function ![travis](https://travis-ci.org/11grossmane/child-process-function.svg?branch=master)
+# child-process-function ![travis](https://travis-ci.org/11grossmane/child-process-function.svg?branch=master)
 
-This is a node library for running functions in parallel. Unlike other commonly used libraries that claim parallelism, but are actually confined to the concurrency pattern of promises and javascript's event-loop, spawn-function uses node's built-in child_process library to create actual parallelism for blazing fast execution.
+This is a node library for running functions in parallel. Unlike other commonly used libraries that claim parallelism, but are actually confined to the concurrency pattern of promises and javascript's event-loop, child-process-function uses node's built-in child_process library to create actual parallelism for blazing fast execution.
 
 ## Installation
 
 ```bash
-npm install spawn-function
+npm install child-process-function
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ npm install spawn-function
 Why wait for the call stack to empty, when you can kick off a true child process that executes your function in parallel. It would be the same as if you had a separate file and used node's child_process.spawn.
 
 ```javascript
-const spawn = require('spawn-function')
+const spawn = require('child-process-function')
 
 function takesALongTime(foo, bar){
   ...

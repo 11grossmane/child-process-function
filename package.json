@@ -1,6 +1,6 @@
 {
-    "name": "spawner",
-    "version": "1.0.0",
+    "name": "child-process-function",
+    "version": "1.0.1",
     "description": "",
     "main": "src/index.js",
     "scripts": {
