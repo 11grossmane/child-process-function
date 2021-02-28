@@ -35,8 +35,9 @@ const opts = {
     },
     callbackArgs: ["foo", "bar"], //optional
     onSuccess: () => console.log("this happens when my child function ends"), //optional,
-    onMessage: () =>
+    onMessage: (msg) =>
         console.log(
+            msg,
             "this happens when my child function calls process.send('...')"
         ), //optional
     onError: () =>
