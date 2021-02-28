@@ -1,6 +1,6 @@
 # spawn-function ![travis](https://travis-ci.org/11grossmane/child-process-function.svg?branch=master)
 
-spawn-function is a node library for running function in parallel. Unlike other commonly used libraries that claim parallelism, but are actually confined to the concurrency pattern of promises and javascript's event-loop, spawn-function uses node's built-in child_process library to create actual parallelism for blazing fast execution.
+This is a node library for running functions in parallel. Unlike other commonly used libraries that claim parallelism, but are actually confined to the concurrency pattern of promises and javascript's event-loop, spawn-function uses node's built-in child_process library to create actual parallelism for blazing fast execution.
 
 ## Installation
 
@@ -16,7 +16,7 @@ npm install spawn-function
  spawn(func,...args)
 ```
 
-Why wait for the event loop...spawn will kick off a true child process which executes your function in parallel. It would be the same as if you had a separate file and used node's child_process.spawn.
+Why wait for the call stack to empty, when you can kick off a true child process that executes your function in parallel. It would be the same as if you had a separate file and used node's child_process.spawn.
 
 ```javascript
 const spawn = require('spawn-function')
