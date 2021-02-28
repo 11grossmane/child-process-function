@@ -1,31 +1,31 @@
-const cp = require("child_process");
+const cp = require("child_process")
 
 const spawn = (cb, ...args) => {
-  //parsing args so they can be passed in node -e with correct formatting
-  let parsedArgs;
-  if (args.length) {
-    parsedArgs = args
-      .map((arg) => {
-        if (typeof arg === "string") return `'${arg}'`;
-        if (typeof arg === "object") return JSON.stringify(arg);
-        return arg;
-      })
-      .join(".");
-  }
-
-  //spawning child process with function
-  const child = cp.spawn(
-    "node",
-    ["-e", `(${cb})${parsedArgs ? `(${parsedArgs})` : "()"};`],
-    {
-      cwd: __dirname, //this can also be prepended to the file name
-      detached: false, //child process ends when parent ends
+    //parsing args so they can be passed in node -e with correct formatting
+    let parsedArgs
+    if (args.length) {
+        parsedArgs = args
+            .map((arg) => {
+                if (typeof arg === "string") return `'${arg}'`
+                if (typeof arg === "object") return JSON.stringify(arg)
+                return arg
+            })
+            .join(".")
     }
-  );
 
-  //logging stdout and stderr from child process
-  child.stdout.on("data", (data) => console.log(data.toString()));
-  child.stderr.on("error", (error) => console.error(error.toString()));
-};
+    //spawning child process with function
+    const child = cp.spawn(
+        "node",
+        ["-e", `(${cb})${parsedArgs ? `(${parsedArgs})` : "()"};`],
+        {
+            cwd: __dirname, //this can also be prepended to the file name
+            detached: false, //child process ends when parent ends
+        }
+    )
 
-module.exports.spawn = spawn;
+    //logging stdout and stderr from child process
+    child.stdout.on("data", (data) => console.log(data.toString()))
+    child.stderr.on("error", (error) => console.error(error.toString()))
+}
+
+module.exports.spawn = spawn
