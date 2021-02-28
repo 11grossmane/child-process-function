@@ -1,1 +1,1 @@
-module.exports = require('./spawn').spawn
+module.exports = require("./spawn").spawn;
