@@ -6,7 +6,7 @@ const timer = (...args) => {
     let count = 0
     while (count < 10000) count++
     while (new Date().getTime() - start.getTime() < 1500) {}
-    console.log("timer finished")
+    process.send("timer finished")
 }
 const logAfter = () => console.log("after")
 module.exports = { timer, logAfter }

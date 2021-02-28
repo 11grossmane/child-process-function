@@ -8,28 +8,43 @@ This is a node library for running functions in parallel. Unlike other commonly 
 npm install child-process-function
 ```
 
-## Usage
-
-```javascript
- * @param {requestCallback} func
- * @param {Mixed} [...args] Unlimited amount of optional parameters
- spawn(func,...args)
-```
+## Basic Usage
 
 Why wait for the call stack to empty, when you can kick off a true child process that executes your function in parallel. It would be the same as if you had a separate file and used node's child_process.spawn.
 
 ```javascript
 const spawn = require('child-process-function')
 
-function takesALongTime(foo, bar){
+function takesALongTime(){
   ...
   console.log('this should log after')
 }
 
 function(){
-  spawn(takesALongTime, 'foo', 'bar')
+  spawn({callback: takesALongTime})
   console.log('this should log first')
 }
+```
+
+## Options
+
+```javascript
+const opts = {
+    callback: (foo, bar) => {
+        console.log("happening inside child process")
+    },
+    callbackArgs: ["foo", "bar"], //optional
+    onSuccess: () => console.log("this happens when my child function ends"), //optional,
+    onMessage: () =>
+        console.log(
+            "this happens when my child function calls process.send('...')"
+        ), //optional
+    onError: () =>
+        console.log("this happens if there is an error in my child function"), //optional,
+    timeout: 3000, //optional, defaults to 3000
+}
+
+spawn(opts)
 ```
 
 ## Contributing

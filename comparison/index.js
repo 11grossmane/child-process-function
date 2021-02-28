@@ -66,11 +66,21 @@ const mainFour = () => {
 const mainFive = () => {
     console.log("\n")
 
-    spawn(() => {
-        let count = 0
-        while (count < 100000) count++
-        console.log("inside child process")
-    })
+    const opts = {
+        callback: () => {
+            let count = 0
+            while (count < 100000) count++
+            console.log("inside child process")
+
+            //we can also send a message if we want
+            process.send("this is a message")
+        },
+        onMessage: (msg) => {
+            console.log(msg)
+        },
+    }
+
+    spawn(opts)
     console.log("after")
 }
 

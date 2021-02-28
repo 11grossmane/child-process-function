@@ -16,16 +16,19 @@ describe("spawn function", () => {
     it('should log "after" before "timer finished"', async () => {
         const spy = sinon.spy(console, "log")
 
-        spawn(timer)
+        spawn({
+            callback: timer,
+            onMessage: (msg) => console.log(msg),
+        })
         logAfter()
 
-        await new Promise((res) => setTimeout(() => res(null), 1600))
+        await new Promise((res) => setTimeout(() => res(null), 1800))
 
         const result = spy.getCalls().map(({ args }) => args[0])
         console.log(result)
         expect(result.length).to.eq(2)
-        expect(result.indexOf("timer finished")).to.be.lessThan(
-            result.indexOf("after")
+        expect(result.indexOf("after")).to.be.lessThan(
+            result.indexOf("timer finished")
         )
     })
 })
